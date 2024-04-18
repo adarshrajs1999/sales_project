@@ -6,8 +6,8 @@
 
 <form method="POST">
     {% csrf_token %}
-    {{formlogin|crispy}}
-    {{formcustomer|crispy}}
+    {{loginform|crispy}}
+    {{customerform|crispy}}
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
 

@@ -17,39 +17,38 @@ def login_1(request):
 
 
 def customer_register(request):
-    formlogin=LoginRegister()
-    formcustomer=CustomerRegister()
+    loginform=LoginRegister()
+    customerform=CustomerRegister()
     if request.method=="POST":
-        formlogin=LoginRegister(request.POST)
-        formcustomer=CustomerRegister(request.POST)
-        if formlogin.is_valid() and formcustomer.is_valid():
-            loginobj=formlogin.save(commit=False)
+        loginform=LoginRegister(request.POST)
+        customerform=CustomerRegister(request.POST)
+        if loginform.is_valid() and customerform.is_valid():
+            loginobj=loginform.save(commit=False)
             loginobj.is_customer=True
             loginobj.save()
-            customerobj=formcustomer.save(commit=False)
+            customerobj=customerform.save(commit=False)
             customerobj.user=loginobj
             customerobj.save()
             return redirect("/")
 
-    return render(request,"customer_register.html",{'formlogin':formlogin,'formcustomer':formcustomer})
+    return render(request,"customer_register.html",{'loginform':loginform,'customerform':customerform})
 
 def seller_register(request):
-    formlogin=LoginRegister()
-    formseller=SellerRegsiter()
+    loginform=LoginRegister()
+    sellerform=SellerRegsiter()
     if request.method=="POST":
-        formlogin=LoginRegister(request.POST)
-        formseller=SellerRegsiter(request.POST)
-        if formlogin.is_valid() and formseller.is_valid():
-            loginobj=formlogin.save(commit=False)
+        loginform=LoginRegister(request.POST)
+        sellerform=SellerRegsiter(request.POST)
+        if loginform.is_valid() and sellerform.is_valid():
+            loginobj=loginform.save(commit=False)
             loginobj.is_seller=True
             loginobj.save()
-            sellerobj= formseller.save(commit=False)
+            sellerobj= sellerform.save(commit=False)
             sellerobj.user=loginobj
             sellerobj.save()
             return redirect("/")
 
-    return render(request,"seller_register.html",{'formlogin':formlogin,'formseller':formseller})
-
+    return render(request,"seller_register.html",{'loginform':loginform,'sellerform':sellerform})
 
 
 
