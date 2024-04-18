@@ -24,6 +24,8 @@ def customer_register(request):
         customerform=CustomerRegister(request.POST)
         if loginform.is_valid() and customerform.is_valid():
             loginobj=loginform.save(commit=False)
+# (commit=False) an object need to be created but should
+# not be saved to the data base earlier
             loginobj.is_customer=True
             loginobj.save()
             customerobj=customerform.save(commit=False)
