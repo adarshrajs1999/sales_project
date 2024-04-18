@@ -3,20 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 from sales_app.models import login_view, Customer, Seller
 
-class login_view_form(forms.ModelForm):
-    class Meta:
-        model=login_view
-        fields=('__all__')
-
-class customer_form(forms.ModelForm):
-    class Meta:
-        model=Customer
-        fields=('__all__')
-
-class seller_form(forms.ModelForm):
-    class Meta:
-        model=Seller
-        fields=('__all__')
 
 class LoginRegister(UserCreationForm):
     username=forms.CharField()
@@ -33,6 +19,7 @@ class CustomerRegister(forms.ModelForm):
         model=Customer
         fields=("__all__")
         exclude=("user","status1")
+
 
 class SellerRegsiter(forms.ModelForm):
     class Meta:

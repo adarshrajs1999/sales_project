@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login
 
-from sales_app.forms import CustomerRegister, SellerRegsiter
+from sales_app.forms import CustomerRegister, SellerRegsiter, LoginRegister
 
 
 # Create your views here.
@@ -15,21 +15,62 @@ def dash(request):
 def login_1(request):
     return render(request,"login.html")
 
+
 def customer_register(request):
-    form=CustomerRegister()
+    formlogin=LoginRegister()
+    formcustomer=CustomerRegister()
     if request.method=="POST":
-        form=CustomerRegister(request.POST)
-        if form.is_valid():
-            form.save()
+        formlogin=LoginRegister(request.POST)
+        formcustomer=CustomerRegister(request.POST)
+        if formlogin.is_valid() and formcustomer.is_valid():
+            loginobj=formlogin.save(commit=False)
+            loginobj.is_customer=True
+            loginobj.save()
+            customerobj=formcustomer.save(commit=False)
+            customerobj.user=loginobj
+            customerobj.save()
             return redirect("/")
-    return render(request,"customer_register.html",{'form':form})
+
+    return render(request,"customer_register.html",{'formlogin':formlogin,'formcustomer':formcustomer})
 
 def seller_register(request):
-    form=SellerRegsiter()
+    formlogin=LoginRegister()
+    formseller=SellerRegsiter()
     if request.method=="POST":
-        form=SellerRegsiter(request.POST)
-        if form.is_valid():
-            form.save()
+        formlogin=LoginRegister(request.POST)
+        formseller=SellerRegsiter(request.POST)
+        if formlogin.is_valid() and formseller.is_valid():
+            loginobj=formlogin.save(commit=False)
+            loginobj.is_seller=True
+            loginobj.save()
+            sellerobj= formseller.save(commit=False)
+            sellerobj.user=loginobj
+            sellerobj.save()
             return redirect("/")
-    return render(request,"seller_register.html",{'form':form})
+
+    return render(request,"seller_register.html",{'formlogin':formlogin,'formseller':formseller})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
