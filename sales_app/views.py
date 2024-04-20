@@ -1,6 +1,6 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login
-
 from sales_app.forms import CustomerRegister, SellerRegsiter, LoginRegister
 
 
@@ -12,7 +12,22 @@ def home(request):
 def dash(request):
     return render(request,"dash.html")
 
-def login_1(request):
+def login_view(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+            if user.is_staff:
+                return redirect("admin_dash")
+            elif user.is_customer:
+                return redirect("customer_dash")
+            elif user.is_seller:
+                return redirect("seller_dash")
+
+        # else:
+        #     messages.info('Invalid Credentials')
     return render(request,"login.html")
 
 
@@ -24,8 +39,8 @@ def customer_register(request):
         customerform=CustomerRegister(request.POST)
         if loginform.is_valid() and customerform.is_valid():
             loginobj=loginform.save(commit=False)
-# (commit=False) an object need to be created but should
-# not be saved to the data base earlier
+# (commit=False)--> an object need to be created but should
+# not be saved to the data base immediately
             loginobj.is_customer=True
             loginobj.save()
             customerobj=customerform.save(commit=False)
@@ -51,6 +66,17 @@ def seller_register(request):
             return redirect("/")
 
     return render(request,"seller_register.html",{'loginform':loginform,'sellerform':sellerform})
+
+def admin_dash(request):
+    return render(request,"admin/admin_dash.html")
+
+def customer_dash(request):
+    return render(request,"customer/customer_dash.html")
+
+def seller_dash(request):
+    return render(request,"seller/seller_dash.html")
+
+
 
 
 
