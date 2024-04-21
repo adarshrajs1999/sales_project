@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from sales_app.models import login_view, Customer, Seller
+from sales_app.models import  Login,Customer, Seller
 
 
 class LoginRegister(UserCreationForm):
@@ -10,7 +10,7 @@ class LoginRegister(UserCreationForm):
     password2= forms.CharField(label="confirm password",widget=forms.PasswordInput)
 
     class Meta:
-        model=login_view
+        model=Login
         fields=('username','password1','password2')
 
 class CustomerRegister(forms.ModelForm):

@@ -12,25 +12,6 @@ def home(request):
 def dash(request):
     return render(request,"dash.html")
 
-def login_view(request):
-    if request.method=='POST':
-        username=request.POST.get('username')
-        password=request.POST.get('password')
-        user=authenticate(request,username=username,password=password)
-        if user is not None:
-            login(request,user)
-            if user.is_staff:
-                return redirect("admin_dash")
-            elif user.is_customer:
-                return redirect("customer_dash")
-            elif user.is_seller:
-                return redirect("seller_dash")
-
-        # else:
-        #     messages.info('Invalid Credentials')
-    return render(request,"login.html")
-
-
 def customer_register(request):
     loginform=LoginRegister()
     customerform=CustomerRegister()
@@ -67,6 +48,7 @@ def seller_register(request):
 
     return render(request,"seller_register.html",{'loginform':loginform,'sellerform':sellerform})
 
+
 def admin_dash(request):
     return render(request,"admin/admin_dash.html")
 
@@ -76,6 +58,23 @@ def customer_dash(request):
 def seller_dash(request):
     return render(request,"seller/seller_dash.html")
 
+def login_view(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+            if user.is_staff:
+                return redirect("admin_dash")
+            elif user.is_customer:
+                return redirect("customer_dash")
+            elif user.is_seller:
+                return redirect("seller_dash")
+
+        # else:
+        #     messages.info('Invalid Credentials')
+    return render(request,"login.html")
 
 
 
