@@ -1,0 +1,26 @@
+{% extends 'dash.html' %}
+
+{% block content %}
+<table class="table" >
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">phone</th>
+      <th scope="col">email</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in customers %}
+    <tr>
+      <td>{{i.name}}</td>
+      <td>{{i.phone_number}}</td>
+      <td>{{i.email}}</td>
+      <td><a href="{% url 'customer_update' i.id %}"><button class="btn btn-info">Update</button></a></td>
+      <td><a href="{% url 'customer_delete' i.id %}"><button class="btn btn-danger">Delete</button></a></td>
+
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+{% endblock %}

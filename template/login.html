@@ -145,6 +145,8 @@ button{
     </style>
 </head>
 <body>
+
+
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
@@ -161,6 +163,9 @@ button{
 
         <button type="submit">Login</button>
         <div class="social">
+         {% for message in messages %}
+           {{message}}
+         {% endfor %}
           <div class="go"><i class="fab fa-google"></i>  Google</div>
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>

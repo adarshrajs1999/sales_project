@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login
-from sales_app.forms import CustomerRegister, SellerRegsiter, LoginRegister
+from sales_app.forms import CustomerRegister, LoginRegister, SellerRegister
 
 
 # Create your views here.
@@ -33,10 +33,10 @@ def customer_register(request):
 
 def seller_register(request):
     loginform=LoginRegister()
-    sellerform=SellerRegsiter()
+    sellerform=SellerRegister()
     if request.method=="POST":
         loginform=LoginRegister(request.POST)
-        sellerform=SellerRegsiter(request.POST)
+        sellerform=SellerRegister(request.POST)
         if loginform.is_valid() and sellerform.is_valid():
             loginobj=loginform.save(commit=False)
             loginobj.is_seller=True
@@ -72,8 +72,8 @@ def login_view(request):
             elif user.is_seller:
                 return redirect("seller_dash")
 
-        # else:
-        #     messages.info('Invalid Credentials')
+        else:
+            messages.info(request,'Invalid Credentials')
     return render(request,"login.html")
 
 

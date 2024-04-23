@@ -21,7 +21,7 @@ class CustomerRegister(forms.ModelForm):
         exclude=("user","status1")
 
 
-class SellerRegsiter(forms.ModelForm):
+class SellerRegister(forms.ModelForm):
     class Meta:
         model=Seller
         fields=('__all__')
