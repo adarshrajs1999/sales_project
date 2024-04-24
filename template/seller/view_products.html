@@ -1,0 +1,33 @@
+{% extends 'dash.html' %}
+
+{% block content %}
+
+<div style="display:grid;grid-template-columns:1fr ;grid-gap:10px;">
+{% for i in data %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">
+          model number:{{i.model_number}}<br>
+          model name:{{i.model_name}}<br>
+           sim type:{{i.sim_type}}<br>
+          color:{{i.color}}<br>
+
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endfor %}
+ </div>
+
+{% endblock %}

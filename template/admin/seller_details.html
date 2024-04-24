@@ -4,6 +4,7 @@
 <table class="table" >
   <thead>
     <tr>
+      <th scope="col">id</th>
       <th scope="col">name</th>
       <th scope="col">phone</th>
       <th scope="col">email</th>
@@ -12,6 +13,7 @@
   <tbody>
   {% for i in sellers %}
     <tr>
+      <td>{{i.id}}</td>
       <td>{{i.name}}</td>
       <td>{{i.phone_number}}</td>
       <td>{{i.email}}</td>

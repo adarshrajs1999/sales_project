@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from sales_app.models import  Login,Customer, Seller
+from sales_app.models import Login, Customer, Seller,mobileproduct
 
 
 class LoginRegister(UserCreationForm):
@@ -26,6 +26,18 @@ class SellerRegister(forms.ModelForm):
         model=Seller
         fields=('__all__')
         exclude=("user","status2")
+
+class mobile_product_form(forms.ModelForm):
+    class Meta:
+        model=mobileproduct
+        fields=('__all__')
+
+
+
+
+
+
+
 
 
 

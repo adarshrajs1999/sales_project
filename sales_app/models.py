@@ -27,5 +27,14 @@ class Seller(models.Model):
         return self.name
 
 
+class mobileproduct(models.Model):
+    model_number=models.CharField(max_length=250)
+    model_name=models.CharField(max_length=250)
+    sim_type=models.CharField(max_length=250)
+    color=models.CharField(max_length=250)
+    
+
+
+
 
 
