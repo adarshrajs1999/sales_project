@@ -15,6 +15,16 @@ def view_products(request):
     data= mobileproduct.objects.all()
     return render(request,"seller/view_products.html",{'data':data})
 
+def product_delete(request,id):
+    product=mobileproduct.objects.get(pk=id)
+    product.delete()
+    return redirect('view_products')
+
+
+
+
+
+
 
 
 

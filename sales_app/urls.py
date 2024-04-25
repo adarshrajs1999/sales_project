@@ -18,7 +18,8 @@ urlpatterns = [
     path("customer_delete/<int:id>/", admin_views.customer_delete, name="customer_delete"),
     path("seller_delete/<int:id>/", admin_views.seller_delete, name="seller_delete"),
     path("add_product/",seller_views.create_product,name="create_product"),
-    path("view_products/", seller_views.view_products, name="view_products")
+    path("view_products/", seller_views.view_products, name="view_products"),
+    path("product_delete/<int:id>/",seller_views.product_delete,name="product_delete")
 
 
 ]
