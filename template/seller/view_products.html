@@ -5,21 +5,21 @@
 <div style="display:grid;grid-template-columns:1fr ;grid-gap:10px;">
 {% for i in data %}
 
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
+<div class="card mb-3" style="width:100%;height:100%;background-color:#E6E6FA">
+  <div class="row g-0" style="display:grid;grid-template-columns:1fr 1fr;">
+    <div style="width:80%;height:100%;" >
+      <img src="{{i.image.url}}" class="img-fluid rounded-start" alt="image not found" style="width:100%;height:100%;">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
+        <h5 class="card-title" style="color:green;">{{i.model_name}}</h5>
+        <p class="card-text text" style="color:brown;" >
           model number:{{i.model_number}}<br>
           model name:{{i.model_name}}<br>
            sim type:{{i.sim_type}}<br>
           color:{{i.color}}<br>
           <a href="{% url 'product_delete' i.id %}" class="btn btn-danger">Delete</a>
-
+          <a href="{% url 'product_update' i.id %}" class="btn btn-info">Update</a>
         </p>
 
       </div>

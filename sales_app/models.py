@@ -32,6 +32,7 @@ class mobileproduct(models.Model):
     model_name=models.CharField(max_length=250)
     sim_type=models.CharField(max_length=250)
     color=models.CharField(max_length=250)
+    image=models.FileField(upload_to='documents/')
     
 
 
