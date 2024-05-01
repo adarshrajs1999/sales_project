@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class Login(AbstractUser):
+class User_model(AbstractUser):
     is_customer=models.BooleanField(default=False)
     is_seller=models.BooleanField(default=False)
 
 class Customer(models.Model):
-    user=models.ForeignKey(Login,on_delete=models.CASCADE,related_name="customer")
+    user=models.ForeignKey(User_model,on_delete=models.CASCADE,related_name="customer")
     name=models.CharField(max_length=50)
     phone_number=models.CharField(max_length=100)
     email=models.EmailField()
@@ -17,7 +17,7 @@ class Customer(models.Model):
         return self.name
 
 class Seller(models.Model):
-    user = models.ForeignKey(Login, on_delete=models.CASCADE, related_name="seller")
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, related_name="seller")
     name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=100)
     email = models.EmailField()

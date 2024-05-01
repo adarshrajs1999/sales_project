@@ -1,16 +1,16 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from sales_app.models import Login, Customer, Seller,mobileproduct
+from sales_app.models import User_model, Customer, Seller,mobileproduct
 
 
-class LoginRegister(UserCreationForm):
+class User_form(UserCreationForm):
     username=forms.CharField()
     password1 = forms.CharField(label="password",widget=forms.PasswordInput)
     password2= forms.CharField(label="confirm password",widget=forms.PasswordInput)
 
     class Meta:
-        model=Login
+        model=User_model
         fields=('username','password1','password2')
 
 class CustomerRegister(forms.ModelForm):
