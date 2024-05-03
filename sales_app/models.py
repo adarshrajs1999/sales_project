@@ -28,10 +28,10 @@ class Seller(models.Model):
 
 
 class mobileproduct(models.Model):
-    model_number=models.CharField(max_length=250)
-    model_name=models.CharField(max_length=250)
-    sim_type=models.CharField(max_length=250)
-    color=models.CharField(max_length=250)
+    name=models.CharField(max_length=250)
+    brand=models.CharField(max_length=250)
+    price=models.IntegerField()
+    description=models.TextField()
     image=models.FileField(upload_to='documents/')
     
 

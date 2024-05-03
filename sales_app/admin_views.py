@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from sales_app.forms import CustomerRegister, SellerRegister
-from sales_app.models import Customer, Seller
+from sales_app.models import Customer, Seller, mobileproduct
 
 
 def customer_details(request):
@@ -41,4 +41,8 @@ def seller_delete(request,id):
     seller=Seller.objects.get(pk=id)
     seller.delete()
     return redirect("seller_details")
+
+def admin_view_products(request):
+    data= mobileproduct.objects.all()
+    return render(request,"admin/view_products.html",{'data':data})
 

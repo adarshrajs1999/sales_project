@@ -13,7 +13,7 @@ def create_product(request):
             return redirect("seller_dash")
     return render(request,"seller/add_product.html",{'data':data})
 
-def view_products(request):
+def seller_view_products(request):
     data= mobileproduct.objects.all()
     return render(request,"seller/view_products.html",{'data':data})
 

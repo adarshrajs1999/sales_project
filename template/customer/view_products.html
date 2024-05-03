@@ -1,6 +1,15 @@
 {% extends 'dash.html' %}
 
+{% block search %}
+        <form method="get">
+            <p><b>Search with brand:</b>{{ search_filter.form.brand}}</p>
+            <button class="form-control bg-dark border-0" type="submit" >Search </button>
+        </form>
+{% endblock %}
+
+
 {% block content %}
+
 
 <div style="display:grid;grid-template-columns:1fr;grid-gap:20px;">
 
@@ -13,12 +22,12 @@
       <div class="card-body">
         <h5 class="card-title" style="color:green;">{{i.model_name}}</h5>
         <p class="card-text text" style="color:brown;" >
-         model name:{{i.name}}<br>
+          model name:{{i.name}}<br>
           brand:{{i.brand}}<br>
            description:{{i.description}}<br>
-              price:{{i.price}}<br>
-          <a href="{% url 'product_delete' i.id %}" class="btn btn-danger">Delete</a>
-          <a href="{% url 'product_update' i.id %}" class="btn btn-info">Update</a>
+            price:{{i.price}}<br>
+          <a href="" class="btn btn-warning">Add to Cart</a>
+
         </p>
 
       </div>
