@@ -106,11 +106,11 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
+                 {% block search %}
                 <form class="d-none d-md-flex ms-4">
-                    {% block search %}
                     <input class="form-control bg-dark border-0" type="search" placeholder="Search">
-                    {% endblock %}
                 </form>
+                 {% endblock %}
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">

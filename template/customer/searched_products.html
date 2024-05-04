@@ -1,12 +1,5 @@
 {% extends 'dash.html' %}
 
-{% block search %}
-        <form method="GET">
-            <p>Search with brand:{{searched_form.form.brand}}</p>
-            <button class="btn btn-warning" type="submit" >Search </button>
-        </form>
-{% endblock %}
-
 
 {% block content %}
 
@@ -27,14 +20,15 @@
            description:{{i.description}}<br>
             price:{{i.price}}<br>
           <a href="" class="btn btn-warning">Add to Cart</a>
+
         </p>
+
       </div>
 </div>
 
 
 {% endfor %}
-</div>
 
-
+ </div>
 
 {% endblock %}
