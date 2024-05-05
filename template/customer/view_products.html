@@ -1,10 +1,12 @@
 {% extends 'dash.html' %}
 
 {% block search %}
-        <form method="GET">
-            <p>Search with brand:{{searched_form.form.brand}}</p>
-            <button class="btn btn-warning" type="submit" >Search </button>
-        </form>
+<form method="GET">
+    <p>Search with brand:{{searched_form.form.brand}}</p>
+    <button class="btn btn-warning" type="submit" >Search </button>
+</form>
+
+
 {% endblock %}
 
 
@@ -22,7 +24,7 @@
       <div class="card-body">
         <h5 class="card-title" style="color:green;">{{i.model_name}}</h5>
         <p class="card-text text" style="color:brown;" >
-          model name:{{i.name}}<br>
+          name:{{i.name}}<br>
           brand:{{i.brand}}<br>
            description:{{i.description}}<br>
             price:{{i.price}}<br>
