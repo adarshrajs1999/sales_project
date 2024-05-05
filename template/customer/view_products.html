@@ -1,9 +1,10 @@
 {% extends 'dash.html' %}
 
 {% block search %}
-<form method="GET">
+
+<form method="GET" style="display:grid;grid-template-columns:1fr 1fr;">
     <p>Search with brand:{{searched_form.form.brand}}</p>
-    <button class="btn btn-warning" type="submit" >Search </button>
+    <button class="btn btn-dark" type="submit">Search </button>
 </form>
 
 

@@ -71,7 +71,6 @@ def login_view(request):
                 return redirect("customer_dash")
             elif user.is_seller:
                 return redirect("seller_dash")
-
         else:
             messages.info(request,'Invalid Credentials')
     return render(request,"login.html")
