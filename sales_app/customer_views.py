@@ -7,5 +7,6 @@ def customer_view_products(request):
     data = mobileproduct.objects.all()
     searched_form = product_filter(request.GET,queryset=data)
     data = searched_form.qs
-    return render(request,"customer/view_products.html",{'data':data,'searched_form':searched_form})
+    context={'data':data,'searched_form':searched_form}
+    return render(request,"customer/view_products.html",context)
 
