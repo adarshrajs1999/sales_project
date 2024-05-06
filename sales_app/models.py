@@ -28,9 +28,10 @@ class Seller(models.Model):
 
 
 class mobileproduct(models.Model):
+    seller=models.ForeignKey(Seller,on_delete=models.DO_NOTHING)
     name=models.CharField(max_length=250)
     brand=models.CharField(max_length=250)
-    price=models.IntegerField()
+    price=models.CharField(max_length=250)
     description=models.TextField()
     image=models.FileField(upload_to='documents/')
     

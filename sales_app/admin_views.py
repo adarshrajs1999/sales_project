@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from sales_app.filters import product_filter_form
 from sales_app.forms import CustomerRegister, SellerRegister
 from sales_app.models import Customer, Seller, mobileproduct
 
@@ -44,5 +45,9 @@ def seller_delete(request,id):
 
 def admin_view_products(request):
     data= mobileproduct.objects.all()
-    return render(request,"admin/view_products.html",{'data':data})
+    searched_form = product_filter_form(request.GET,queryset=data)
+    # qs-->query set
+    data = searched_form.qs
+    context = {'data': data, 'searched_form': searched_form}
+    return render(request,"admin/view_products.html",context)
 

@@ -1,4 +1,14 @@
-{% extends 'dash.html' %}
+{% extends 'admin/admin_dash.html' %}
+
+{% block search %}
+
+<form method="GET" style="display:grid;grid-template-columns:1fr 1fr;">
+    <p style="margin-bottom:2%;">{{searched_form.form.seller_name}}</p>
+    <button class="btn btn-warning" type="submit" style="margin-bottom:2%;width:50%;" >Search </button>
+</form>
+
+{% endblock %}
+
 
 {% block content %}
 
@@ -13,6 +23,7 @@
       <th scope="col">brand</th>
       <th scope="col">description</th>
       <th scope="col">price</th>
+       <th scope="col">seller name</th>
         <th scope="col">image</th>
     </tr>
   </thead>
@@ -23,6 +34,7 @@
       <td>{{i.brand}}</td>
       <td>{{i.price}}</td>
         <td>{{i.description}}</td>
+      <td>{{i.seller.name}}</td>
         <td style="position:relative;"><img src="{{i.image.url}}" alt="..." style="position:absolute;width:100%;height:100%;"></td>
     </tr>
 

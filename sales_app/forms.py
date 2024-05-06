@@ -31,6 +31,7 @@ class mobile_product_form(forms.ModelForm):
     class Meta:
         model=mobileproduct
         fields=('__all__')
+        exclude = ('user',)
 
 
 

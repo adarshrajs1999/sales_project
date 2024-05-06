@@ -64,9 +64,9 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    {% block button1 %}
+
                     <a href=" {% url 'customer_details' %} " class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Customer Details</a>
-                    {% endblock %}
+
 <!--                    <div class="nav-item dropdown">-->
 <!--                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>-->
 <!--                        <div class="dropdown-menu bg-transparent border-0">-->
@@ -106,15 +106,17 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
+                {% block search %}
                 <form class="d-none d-md-flex ms-4">
                     <input class="form-control bg-dark border-0" type="search" placeholder="Search">
                 </form>
+                {% endblock %}
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-envelope me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Message</span>
-                        </a>
+<!--                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">-->
+<!--                            <i class="fa fa-envelope me-lg-2"></i>-->
+<!--                            <span class="d-none d-lg-inline-flex">Message</span>-->
+<!--                        </a>-->
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
@@ -150,10 +152,10 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a>
+<!--                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">-->
+<!--                            <i class="fa fa-bell me-lg-2"></i>-->
+<!--                            <span class="d-none d-lg-inline-flex">Notificatin</span>-->
+<!--                        </a>-->
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <h6 class="fw-normal mb-0">Profile updated</h6>
@@ -488,6 +490,8 @@
 <!--        &lt;!&ndash; Back to Top &ndash;&gt;-->
 <!--        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>-->
 <!--    </div>-->
+        </div>
+    </div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
