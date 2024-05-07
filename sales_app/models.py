@@ -7,7 +7,7 @@ class User_model(AbstractUser):
     is_seller=models.BooleanField(default=False)
 
 class Customer(models.Model):
-    user=models.ForeignKey(User_model,on_delete=models.CASCADE,related_name="customer")
+    user=models.ForeignKey(User_model,on_delete=models.CASCADE,related_name="customers")
     name=models.CharField(max_length=50)
     phone_number=models.CharField(max_length=100)
     email=models.EmailField()
@@ -17,7 +17,7 @@ class Customer(models.Model):
         return self.name
 
 class Seller(models.Model):
-    user = models.ForeignKey(User_model, on_delete=models.CASCADE, related_name="seller")
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, related_name="sellers")
     name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=100)
     email = models.EmailField()
@@ -28,7 +28,7 @@ class Seller(models.Model):
 
 
 class mobileproduct(models.Model):
-    seller=models.ForeignKey(Seller,on_delete=models.DO_NOTHING)
+    seller=models.ForeignKey(Seller,on_delete=models.CASCADE,related_name='mobileproducts')
     name=models.CharField(max_length=250)
     brand=models.CharField(max_length=250)
     price=models.CharField(max_length=250)

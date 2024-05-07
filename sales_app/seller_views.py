@@ -5,7 +5,7 @@ from sales_app.forms import mobile_product_form
 
 def create_product(request):
     current_user=request.user
-    seller_object=Seller.objects.get(seller=current_user)
+    seller_object=Seller.objects.get(user=current_user)
     data=mobile_product_form()
     if request.method=="POST":
         data=mobile_product_form(request.POST,request.FILES)
