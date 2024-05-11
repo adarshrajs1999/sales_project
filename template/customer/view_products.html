@@ -28,8 +28,13 @@
           brand:{{i.brand}}<br>
            description:{{i.description}}<br>
             price:{{i.price}}<br>
-          <a href="" class="btn btn-warning">Add to Cart</a>
-        </p>
+            <form method = 'post'>
+          {% csrf_token %}
+              <a href="{% url 'add_to_cart' i.id %}" type ='submit' class="btn btn-success">Add to Cart</a>
+           </form>
+          </p>
+
+
       </div>
 </div>
 

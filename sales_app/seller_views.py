@@ -23,7 +23,7 @@ def seller_view_products(request):
 def product_delete(request,id):
     product=mobileproduct.objects.get(pk=id)
     product.delete()
-    return redirect('view_products')
+    return redirect('seller_view_products')
 
 def product_update(request,id):
     obj=mobileproduct.objects.get(pk=id)

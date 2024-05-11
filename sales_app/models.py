@@ -28,13 +28,17 @@ class Seller(models.Model):
 
 
 class mobileproduct(models.Model):
-    seller=models.ForeignKey(Seller,on_delete=models.CASCADE,related_name='mobileproducts')
+    seller=models.ForeignKey(Seller,on_delete=models.CASCADE,related_name='mobileproduct')
     name=models.CharField(max_length=250)
     brand=models.CharField(max_length=250)
     price=models.CharField(max_length=250)
     description=models.TextField()
     image=models.FileField(upload_to='documents/')
-    
+
+class Cart(models.Model):
+    customer=models.ForeignKey(Customer,on_delete=models.CASCADE,related_name='cart_customer')
+    product=models.ForeignKey(mobileproduct,on_delete=models.CASCADE,related_name="cart_product")
+    status=models.IntegerField(default=0)
 
 
 
