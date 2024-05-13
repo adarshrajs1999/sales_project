@@ -41,6 +41,21 @@ class Cart(models.Model):
     status=models.IntegerField(default=0)
 
 
+class Payment(models.Model):
+    cart=models.ForeignKey(Cart,on_delete = models.CASCADE,related_name='cart')
+    phone=models.CharField(max_length = 10)
+    adress=models.TextField()
+    card_number=models.CharField(max_length = 16)
+    cvv=models.CharField(max_length = 3)
+    expiry_date=models.CharField(max_length = 10)
+
+
+
+
+
+
+
+
 
 
 

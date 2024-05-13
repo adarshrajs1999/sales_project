@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from sales_app.models import User_model, Customer, Seller,mobileproduct
+from sales_app.models import User_model, Customer, Seller, mobileproduct, Cart, Payment
 
 
 class User_form(UserCreationForm):
@@ -32,6 +32,13 @@ class mobile_product_form(forms.ModelForm):
         model=mobileproduct
         fields=('__all__')
         exclude = ('seller',)
+
+class payment_form(forms.ModelForm):
+
+    class Meta:
+        model=Payment
+        fields=('__all__')
+        exclude=('cart',)
 
 
 
