@@ -48,7 +48,8 @@ def payment(request,id):
             cart_obj.status = 1
             cart_obj.save()
             return redirect('view_cart')
-    return render(request,'customer/payment.html',{'data':data})
+    cart_object=Cart.objects.get(id=id)
+    return render(request,'customer/payment.html',{'data':data,'cart':cart_object})
 
 
 

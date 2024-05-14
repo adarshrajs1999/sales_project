@@ -40,7 +40,6 @@ class Cart(models.Model):
     product=models.ForeignKey(mobileproduct,on_delete=models.CASCADE,related_name="cart_product")
     status=models.IntegerField(default=0)
 
-
 class Payment(models.Model):
     cart=models.ForeignKey(Cart,on_delete = models.CASCADE,related_name='cart')
     phone=models.CharField(max_length = 10)
