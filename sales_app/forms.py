@@ -38,6 +38,7 @@ class payment_form(forms.ModelForm):
         model = Payment
         fields = ('__all__')
         exclude = ('cart',)
+        # for single field in exclude comma(,) is needed
 
 
 
