@@ -34,11 +34,10 @@ class mobile_product_form(forms.ModelForm):
         exclude = ('seller',)
 
 class payment_form(forms.ModelForm):
-
     class Meta:
-        model=Payment
-        fields=('__all__')
-        exclude=('cart',)
+        model = Payment
+        fields = ('__all__')
+        exclude = ('cart',)
 
 
 

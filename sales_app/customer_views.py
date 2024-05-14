@@ -36,17 +36,17 @@ def delete_cart(request,id):
     return redirect("view_cart")
 
 def payment(request,id):
-    data=payment_form()
+    data = payment_form()
     if request.method == 'POST':
-        data=payment_form(request.POST)
+        data = payment_form(request.POST)
         if data.is_valid():
             payment_obj = data.save(commit=False)
             customer_obj = Customer.objects.get(user=request.user)
             cart_obj=Cart.objects.get(id=id)
             payment_obj.cart = cart_obj
+            payment_obj.save()
             cart_obj.status = 1
             cart_obj.save()
-            payment_obj.save()
             return redirect('view_cart')
     return render(request,'customer/payment.html',{'data':data})
 
