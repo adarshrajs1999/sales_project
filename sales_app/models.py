@@ -46,7 +46,9 @@ class Payment(models.Model):
     adress=models.TextField()
     card_number=models.CharField(max_length = 16)
     cvv=models.CharField(max_length = 3)
-    expiry_date=models.CharField(max_length = 10)
+    date = models.DateField()
+
+
 
 
 

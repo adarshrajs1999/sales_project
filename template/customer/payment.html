@@ -5,21 +5,13 @@
 
 
 <div style="display:grid;grid-template-columns:1fr;grid-gap:20px;">
-
-<div class="card" style="display:grid;grid-template-columns:1fr 1fr;width:550px;height:250px;background-color:#E6E6FA;">
-    <div style="position:relative;">
-      <img src="{{cart.product.image.url}}" class="img-fluid rounded-start" alt="image not found" style="width:100%;height:100%;position:absolute;top:0;left:0;">
-    </div>
-      <div class="card-body">
-        <h5 class="card-title" style="color:green;">{{cart.product.model_name}}</h5>
-        <p class="card-text text" style="color:brown;" >
+    <div>
           name:{{cart.product.name}}<br>
           brand:{{cart.product.brand}}<br>
            description:{{cart.product.description}}<br>
             price:{{cart.product.price}}<br>
 
-      </div>
-</div>
+    </div>
 
 <form method="POST">
     {% csrf_token %}
