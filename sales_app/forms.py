@@ -41,7 +41,11 @@ class dateinput(forms.DateInput):
 
 class payment_form(forms.ModelForm):
     # for overwriting model field called 'date' in the Payment model
-    date=forms.DateField(widget=dateinput)
+    date=forms.DateField(widget=dateinput(attrs={'style':'background-color:white;'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={'style': 'background-color:white;'}))
+    adress = forms.CharField(widget=forms.Textarea(attrs={'style': 'background-color:white;'}))
+    card_number = forms.CharField(widget=forms.TextInput(attrs={'style': 'background-color:white;'}))
+    cvv = forms.CharField(widget=forms.TextInput(attrs={'style': 'background-color:white;'}))
     class Meta:
         model = Payment
         fields = ('__all__')

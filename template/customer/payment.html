@@ -1,8 +1,8 @@
 {% extends 'customer/customer_dash.html' %}
 {% load crispy_forms_tags %}
 
-{% block content %}
 
+{% block content %}
 
 <div style="display:grid;grid-template-columns:1fr;grid-gap:20px;">
     <div>
@@ -18,5 +18,7 @@
     {{data|crispy}}
     <button type="submit" class="btn btn-warning" style="color:red;width:200px;"><b>Pay</b></button>
 </form>
+
+</div>
 
 {% endblock %}
