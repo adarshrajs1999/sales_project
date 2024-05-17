@@ -1,0 +1,25 @@
+{% extends 'customer/customer_dash.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" class="form-control" name="quantity" id="quantity" placeholder="quantity">
+    </div>
+     <div class="form-group">
+        <label for="adress">Adress</label>
+         <textarea class="form-control" name="adress" id="adress" placeholder="adress"></textarea>
+    </div>
+     <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" name="phone" id="phone" placeholder="phone">
+    </div>
+    <button type="submit" class="btn btn-success">Buy</button>
+
+</form>
+
+{% endblock %}

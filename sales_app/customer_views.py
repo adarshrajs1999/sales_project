@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from sales_app.forms import payment_form
-from sales_app.models import mobileproduct, Customer, Cart
+from sales_app.models import mobileproduct, Customer, Cart, Buy
 from sales_app.filters import  product_filter_form
 
 def customer_view_products(request):
@@ -35,21 +35,36 @@ def delete_cart(request,id):
     cart_object.delete()
     return redirect("view_cart")
 
+def buy(request,id):
+    if request.method=='POST':
+        quantity=int(request.POST.get('quantity',0))
+        adress = request.POST.get('adress')
+        phone = request.POST.get('phone')
+        cart_object = Cart.objects.get(id=id)
+        price=int(cart_object.product.price)
+        amount=quantity*price
+        buy_object=Buy(cart=cart_object,quantity=quantity,adress=adress,
+        phone=phone,amount=amount,id=id)
+        buy_object.save()
+        return redirect("payment",id = id)
+    return render(request,"customer/buy.html")
+
+
 def payment(request,id):
     data = payment_form()
+    buy_object=Buy.objects.get(id=id)
     if request.method == 'POST':
         data = payment_form(request.POST)
         if data.is_valid():
             payment_obj = data.save(commit=False)
-            customer_obj = Customer.objects.get(user=request.user)
-            cart_obj=Cart.objects.get(id=id)
-            payment_obj.cart = cart_obj
+            buy_obj=Buy.objects.get(id=id)
+            payment_obj.buy = buy_obj
             payment_obj.save()
-            cart_obj.status = 1
-            cart_obj.save()
+            cart_object = Cart.objects.get(id=id)
+            cart_object.status = 1
+            cart_object.save()
             return redirect('view_cart')
-    cart_object=Cart.objects.get(id=id)
-    return render(request,'customer/payment.html',{'data':data,'cart':cart_object})
+    return render(request,'customer/payment.html',{'data':data,'buy':buy_object})
 
 
 

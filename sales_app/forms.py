@@ -35,22 +35,23 @@ class mobile_product_form(forms.ModelForm):
         exclude = ('seller',)
 
 
+
 class dateinput(forms.DateInput):
     input_type = 'date'
 
-
 class payment_form(forms.ModelForm):
-    # for overwriting model field called 'date' in the Payment model
+# for overwriting the form field linked to the model field'date'
+# in the Payment model.
     date=forms.DateField(widget=dateinput(attrs={'style':'background-color:white;'}))
-    phone = forms.CharField(widget=forms.TextInput(attrs={'style': 'background-color:white;'}))
-    adress = forms.CharField(widget=forms.Textarea(attrs={'style': 'background-color:white;'}))
     card_number = forms.CharField(widget=forms.TextInput(attrs={'style': 'background-color:white;'}))
     cvv = forms.CharField(widget=forms.TextInput(attrs={'style': 'background-color:white;'}))
     class Meta:
         model = Payment
         fields = ('__all__')
-        exclude=('cart',)
+        exclude=('buy',)
         # for single field in exclude comma(,) is needed
+
+
 
 
 
