@@ -1,8 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-
-
-from sales_app.models import User_model, Customer, Seller, mobileproduct, Cart, Payment
+from sales_app.models import User_model, Customer, Seller, mobileproduct, Cart, Pay
 
 
 class User_form(UserCreationForm):
@@ -22,11 +20,13 @@ class CustomerRegister(forms.ModelForm):
         exclude=("user","status1")
 
 
+
 class SellerRegister(forms.ModelForm):
     class Meta:
         model=Seller
         fields=('__all__')
         exclude=("user","status2")
+
 
 class mobile_product_form(forms.ModelForm):
     class Meta:
@@ -34,19 +34,17 @@ class mobile_product_form(forms.ModelForm):
         fields=('__all__')
         exclude = ('seller',)
 
-
-
 class dateinput(forms.DateInput):
     input_type = 'date'
 
-class payment_form(forms.ModelForm):
+class pay_form(forms.ModelForm):
 # for overwriting the form field linked to the model field'date'
 # in the Payment model.
     date=forms.DateField(widget=dateinput(attrs={'style':'background-color:white;'}))
     card_number = forms.CharField(widget=forms.TextInput(attrs={'style': 'background-color:white;'}))
     cvv = forms.CharField(widget=forms.TextInput(attrs={'style': 'background-color:white;'}))
     class Meta:
-        model = Payment
+        model = Pay
         fields = ('__all__')
         exclude=('buy',)
         # for single field in exclude comma(,) is needed
