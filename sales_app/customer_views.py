@@ -46,8 +46,8 @@ def buy(request,cart_id):
         buy_object = Buy(cart = cart,quantity = quantity,adress = adress,
         phone = phone,amount = amount)
         buy_object.save()
-        current_buy_object=Buy.objects.get(cart=cart_object)
-        return redirect("pay",buy_id= current_buy_object.id)
+        current_obect_id=buy_object.id
+        return redirect("pay",buy_id = current_obect_id)
     return render(request,"customer/buy.html")
 
 
