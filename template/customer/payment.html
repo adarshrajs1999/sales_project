@@ -13,7 +13,7 @@
 
     </div>
 
-<form method="POST">
+<form method="POST" style="width:100%;">
     {% csrf_token %}
     {{data|crispy}}
     <button type="submit" class="btn btn-warning" style="color:red;width:200px;"><b>Pay</b></button>

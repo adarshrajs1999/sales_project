@@ -3,12 +3,11 @@
 
 {% block content %}
 
-
-<form method="POST">
+<form method="POST" style="width:100%;">
     {% csrf_token %}
-    {{user_form|crispy}}
-    {{customerform|crispy}}
-    <button type="submit" class="btn btn-success">Submit</button>
+{{user_form|crispy}}
+{{customer_form|crispy}}
+<button type="submit" class="btn btn-warning">Submit</button>
 </form>
 
 {% endblock %}

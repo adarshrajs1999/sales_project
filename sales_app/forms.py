@@ -13,7 +13,6 @@ class User_form(UserCreationForm):
         fields = ('username', 'password1', 'password2')
 
 class CustomerRegister(forms.ModelForm):
-
     class Meta:
         model = Customer
         fields = ("__all__")

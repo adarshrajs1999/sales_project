@@ -29,7 +29,7 @@ def customer_register(request):
             customer_obj.save()
             return redirect("/")
 
-    return render(request,"customer_register.html", {'user_form':user_form, 'customerform':customerform})
+    return render(request,"customer_register.html", {'user_form':user_form, 'customer_form':customerform})
 
 def seller_register(request):
     user_form = User_form()
