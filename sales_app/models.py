@@ -7,7 +7,7 @@ class User_model(AbstractUser):
     is_seller = models.BooleanField(default = False)
 
 class Customer(models.Model):
-    user = models.ForeignKey(User_model,on_delete = models.CASCADE,related_name = "customers")
+    user = models.ForeignKey(User_model, on_delete = models.CASCADE, related_name = "customers")
     name = models.CharField(max_length = 50)
     phone_number = models.CharField(max_length = 100)
     email = models.EmailField()
@@ -28,7 +28,7 @@ class Seller(models.Model):
 
 
 class mobileproduct(models.Model):
-    seller = models.ForeignKey(Seller,on_delete = models.CASCADE,related_name = 'mobileproduct')
+    seller = models.ForeignKey(Seller,on_delete = models.CASCADE, related_name = 'mobileproduct')
     name = models.CharField(max_length=250)
     brand = models.CharField(max_length=250)
     price = models.IntegerField()
@@ -36,19 +36,19 @@ class mobileproduct(models.Model):
     image=models.FileField(upload_to = 'documents/')
 
 class Cart(models.Model):
-    customer = models.ForeignKey(Customer,on_delete = models.CASCADE,related_name = 'cart_customer')
-    product = models.ForeignKey(mobileproduct,on_delete = models.CASCADE,related_name = "cart_product")
+    customer = models.ForeignKey(Customer, on_delete = models.CASCADE, related_name = 'cart_customer')
+    product = models.ForeignKey(mobileproduct, on_delete = models.CASCADE, related_name = "cart_product")
     status = models.IntegerField(default = 0)
 
 class Buy(models.Model):
-    cart = models.ForeignKey(Cart,on_delete = models.CASCADE,related_name = 'buy_cart')
+    cart = models.ForeignKey(Cart, on_delete = models.CASCADE, related_name = 'buy_cart')
     quantity = models.IntegerField()
     adress = models.TextField()
     phone = models.CharField(max_length = 10)
     amount = models.IntegerField()
 
 class Pay(models.Model):
-    buy = models.ForeignKey(Buy,on_delete = models.CASCADE,related_name='pay_buy')
+    buy = models.ForeignKey(Buy, on_delete = models.CASCADE, related_name='pay_buy')
     card_number = models.CharField(max_length = 16)
     cvv = models.CharField(max_length = 3)
     date = models.DateField()
