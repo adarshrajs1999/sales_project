@@ -28,6 +28,7 @@ urlpatterns = [
     path("delete_cart/<int:id>/", customer_views.delete_cart, name = "delete_cart"),
     path("buy/<int:cart_id>/", customer_views.buy, name = "buy"),
     path("payment/<int:buy_id>/", customer_views.pay, name = "pay"),
+    path("view_view_paid_cart/", seller_views.view_paid_cart, name = "view_paid_cart"),
 
 
 

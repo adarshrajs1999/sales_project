@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from sales_app.models import mobileproduct, Seller
+from sales_app.models import mobileproduct, Seller, Pay, Cart
 from sales_app.forms import mobile_product_form
 
 def create_product(request):
@@ -17,7 +17,7 @@ def create_product(request):
     return render(request, "seller/add_product.html", {'data':data})
 
 def seller_view_products(request):
-    data= mobileproduct.objects.all()
+    data= mobileproduct.objects.filter(seller__user = request.user)
     return render(request,"seller/view_products.html",{'data':data})
 
 def product_delete(request, id):
@@ -36,7 +36,9 @@ def product_update(request, id):
     return render(request, "seller/product_update.html", {"data":data})
 
 
-
+def view_paid_cart(request):
+    pay_objects = Pay.objects.filter(buy__cart__status = 1,buy__cart__product__seller__user = request.user )
+    return render(request,"seller/view_paid_cart.html",{'pay_objects':pay_objects})
 
 
 

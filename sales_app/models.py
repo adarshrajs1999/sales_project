@@ -44,14 +44,14 @@ class Buy(models.Model):
     cart = models.ForeignKey(Cart, on_delete = models.CASCADE, related_name = 'buy_cart')
     quantity = models.IntegerField()
     adress = models.TextField()
-    phone = models.CharField(max_length = 10)
+    phone = models.CharField(max_length = 100)
     amount = models.IntegerField()
 
 class Pay(models.Model):
     buy = models.ForeignKey(Buy, on_delete = models.CASCADE, related_name='pay_buy')
     card_number = models.CharField(max_length = 16)
     cvv = models.CharField(max_length = 3)
-    date = models.DateField()
+    expiry_date = models.DateField()
 
 
 

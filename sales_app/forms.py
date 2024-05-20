@@ -39,7 +39,7 @@ class dateinput(forms.DateInput):
 class pay_form(forms.ModelForm):
 # for overwriting the form field linked to the model field'date'
 # in the Payment model.
-    date = forms.DateField(widget = dateinput(attrs = {'style':'background-color:white;'}))
+    expiry_date = forms.DateField(widget = dateinput(attrs = {'style':'background-color:white;'}))
     card_number = forms.CharField(widget = forms.TextInput(attrs = {'style': 'background-color:white;'}))
     cvv = forms.CharField(widget = forms.TextInput(attrs = {'style': 'background-color:white;'}))
     class Meta:

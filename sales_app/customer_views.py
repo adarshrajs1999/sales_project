@@ -58,14 +58,14 @@ def pay(request, buy_id):
         data = pay_form(request.POST)
         if data.is_valid():
             pay_object = data.save(commit = False)
-            buy_obj=Buy.objects.get(id = buy_id)
-            pay_object.buy = buy_obj
+            pay_object.buy = buy_object
             pay_object.save()
             cart_object =buy_object.cart
             cart_object.status = 1
             cart_object.save()
             return redirect('view_cart')
     return render(request, 'customer/payment.html', {'data':data, 'buy_object':buy_object})
+
 
 
 
