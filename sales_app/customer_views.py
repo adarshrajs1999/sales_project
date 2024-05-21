@@ -12,9 +12,9 @@ def customer_view_products(request):
     context = {'data':data,'searched_form':searched_form}
     return render(request, "customer/view_products.html", context)
 
-def add_to_cart(request,id):
+def add_to_cart(request,product_id):
         customer_object = Customer.objects.get(user = request.user)
-        product_object = mobileproduct.objects.get(pk = id)
+        product_object = mobileproduct.objects.get(pk = product_id)
         cart_obj = Cart(customer = customer_object, product = product_object)
         cart_obj.save()
         return redirect('customer_view_products')
