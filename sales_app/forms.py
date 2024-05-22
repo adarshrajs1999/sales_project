@@ -51,8 +51,9 @@ class pay_form(forms.ModelForm):
 class customer_feedback_form(forms.ModelForm):
     class Meta:
         model = Feedback
-        fields = ('__all__')
-        exclude = ('customer', 'reply')
+        fields = ('subject','feedback')
+
+
 
 
 

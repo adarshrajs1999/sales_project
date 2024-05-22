@@ -22,7 +22,22 @@
       <td>{{i.date}}</td>
       <td>{{i.subject}}</td>
       <td>{{i.feedback}}</td>
-      <td>{{i.reply}}</td>
+  {% if i.status == 0 %}
+      <td>
+        <form method="POST">
+          {% csrf_token %}
+          <input type="text" name="reply" placeholder="Enter your reply">
+          <input type="hidden" value="{{i.id}}" name="current_feedback_object_id">
+          <button type="submit" class="btn btn-info">submit</button>
+        </form>
+      </td>
+  {% elif i.status == 1 %}
+      <td>
+        {{i.reply}}<br>
+        <button href="" class="btn btn-info">Update</button>
+        <button href="" class="btn btn-danger">Delete</button>
+      </td>
+  {% endif %}
     </tr>
   {% endfor %}
 

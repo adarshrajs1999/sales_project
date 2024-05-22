@@ -59,6 +59,7 @@ class Feedback(models.Model):
     subject = models.CharField(max_length = 250)
     feedback = models.TextField()
     reply = models.TextField(blank = True, null = True)
+    status = models.IntegerField(default = 0)
 
 
 
