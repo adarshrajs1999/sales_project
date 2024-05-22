@@ -58,7 +58,7 @@ class Feedback(models.Model):
     date = models.DateField(auto_now = True)
     subject = models.CharField(max_length = 250)
     feedback = models.TextField()
-    reply = models.TextField(null = True, blank = True)
+    reply = models.TextField(blank = True, null = True)
 
 
 
