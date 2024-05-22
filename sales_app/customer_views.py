@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from sales_app.forms import pay_form
-from sales_app.models import mobileproduct, Customer, Cart, Buy
+from sales_app.forms import pay_form, customer_feedback_form
+from sales_app.models import mobileproduct, Customer, Cart, Buy, Pay, feedback
 from sales_app.filters import  product_filter_form
 
 def customer_view_products(request):
@@ -66,10 +66,24 @@ def pay(request, buy_id):
             return redirect('view_cart')
     return render(request, 'customer/payment.html', {'data':data, 'buy_object':buy_object})
 
+def view_my_orders(request):
+    pay_objects = Pay.objects.filter(buy__cart__customer__user = request.user)
+    return render(request, 'customer/view_my_orders.html', {'pay_objects': pay_objects})
 
+def customer_feed_back(request):
+    feedback_form_data = customer_feedback_form()
+    if request.method == 'POST':
+        feedback_form_data = customer_feedback_form(request.POST)
+        if feedback_form_data.is_valid():
+            feedback_object = feedback_form_data.save(commit = False)
+            feedback_object.customer = Customer.objects.get(user = request.user)
+            feedback_object.save()
+            return redirect('customer_dash')
+    return render(request, "customer/customer_feed_back.html",{'feedback_form_data':feedback_form_data})
 
-
-
+def customer_view_feedbacks(request):
+    feedback_objects = feedback.objects.filter(customer__user = request.user)
+    return render(request, "customer/view_feedbacks.html",{'feedback_objects':feedback_objects })
 
 
 

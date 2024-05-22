@@ -29,6 +29,10 @@ urlpatterns = [
     path("buy/<int:cart_id>/", customer_views.buy, name = "buy"),
     path("payment/<int:buy_id>/", customer_views.pay, name = "pay"),
     path("view_view_paid_cart/", seller_views.view_paid_cart, name = "view_paid_cart"),
+    path("view_my_orders/", customer_views.view_my_orders, name = "view_my_orders"),
+    path("customer_feed_back/", customer_views.customer_feed_back, name="customer_feed_back"),
+    path("view_customer_feed_back/", customer_views.customer_view_feedbacks, name="customer_view_feed_backs"),
+    path("view_admin_feed_back/", admin_views.admin_view_feedbacks, name="admin_view_feed_backs")
 
 
 

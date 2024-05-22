@@ -37,7 +37,7 @@ def product_update(request, id):
 
 
 def view_paid_cart(request):
-    pay_objects = Pay.objects.filter(buy__cart__product__seller__user = request.user )
+    pay_objects = Pay.objects.filter(buy__cart__status = 1, buy__cart__product__seller__user = request.user )
     return render(request,"seller/view_paid_cart.html",{'pay_objects':pay_objects})
 
 

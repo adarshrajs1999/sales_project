@@ -53,7 +53,12 @@ class Pay(models.Model):
     cvv = models.CharField(max_length = 3)
     expiry_date = models.DateField()
 
-
+class feedback(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name = "feedback_customer")
+    date = models.DateField(auto_now = True)
+    subject = models.CharField(max_length = 250)
+    feedback = models.TextField()
+    reply =models.TextField(null = True,blank = True)
 
 
 

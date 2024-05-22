@@ -1,0 +1,12 @@
+{% extends 'customer/customer_dash.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form method="POST" style="width:100%;">
+    {% csrf_token %}
+    {{feedback_form_data|crispy}}
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+{% endblock %}

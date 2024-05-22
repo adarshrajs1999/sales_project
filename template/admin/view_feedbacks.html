@@ -1,0 +1,33 @@
+{% extends 'admin/admin_dash.html' %}
+
+
+{% block content %}
+
+<div style="display:grid;grid-template-columns:1fr;grid-gap:20px;">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">customer name</th>
+      <th scope="col">date</th>
+      <th scope="col">subject</th>
+      <th scope="col">feedback</th>
+      <th scope="col">reply</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in feedback_objects %}
+    <tr>
+      <td>{{i.customer.name}}</td>
+      <td>{{i.date}}</td>
+      <td>{{i.subject}}</td>
+      <td>{{i.feedback}}</td>
+      <td>{{i.reply}}</td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+ </div>
+
+{% endblock %}
