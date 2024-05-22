@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from sales_app.models import User_model, Customer, Seller, mobileproduct, Cart, Pay, feedback
+from sales_app.models import User_model, Customer, Seller, mobileproduct, Cart, Pay, Feedback
 
 
 class User_form(UserCreationForm):
@@ -50,7 +50,7 @@ class pay_form(forms.ModelForm):
 
 class customer_feedback_form(forms.ModelForm):
     class Meta:
-        model = feedback
+        model = Feedback
         fields = ('__all__')
         exclude = ('customer', 'reply')
 
