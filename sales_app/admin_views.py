@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from sales_app.filters import product_filter_form
-from sales_app.forms import CustomerRegister, SellerRegister
+from sales_app.forms import CustomerRegister, SellerRegister, update_reply_form
 from sales_app.models import Customer, Seller, mobileproduct, Feedback
 
 
@@ -53,12 +53,5 @@ def admin_view_products(request):
 
 def admin_view_feedbacks(request):
     feedback_objects = Feedback.objects.all()
-    if request.method == 'POST':
-        reply = request.POST.get('reply')
-        current_feedback_id = request.POST.get("current_feedback_object_id")
-        current_feedback_object = Feedback.objects.get(id = current_feedback_id)
-        current_feedback_object.reply = reply
-        current_feedback_object.status = 1
-        current_feedback_object.save()
-        return redirect("admin_view_feed_backs")
     return render(request, "admin/view_feedbacks.html",{'feedback_objects':feedback_objects})
+

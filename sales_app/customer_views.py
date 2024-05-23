@@ -77,6 +77,7 @@ def customer_feed_back(request):
         if feedback_form_data.is_valid():
             feedback_object = feedback_form_data.save(commit = False)
             feedback_object.customer = Customer.objects.get(user = request.user)
+            feedback_object.reply = "no reply"
             feedback_object.save()
             return redirect('customer_dash')
     return render(request, "customer/customer_feed_back.html",{'feedback_form_data':feedback_form_data})
