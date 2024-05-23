@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from sales_app.filters import product_filter_form
-from sales_app.forms import CustomerRegister, SellerRegister, update_reply_form
+from sales_app.forms import CustomerRegister, SellerRegister
 from sales_app.models import Customer, Seller, mobileproduct, Feedback
 
 
