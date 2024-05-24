@@ -17,8 +17,12 @@ def create_product(request):
     return render(request, "seller/add_product.html", {'data':data})
 
 def seller_view_products(request):
-    data= mobileproduct.objects.filter(seller__user = request.user)
-    return render(request,"seller/view_products.html",{'data':data})
+    mobileproduct_objects = mobileproduct.objects.filter(seller__user = request.user)
+    if request.method == "GET":
+        # Giving default value as empty('')
+        query = request.GET.get('query', '')
+        mobileproduct_objects = mobileproduct.objects.filter(seller__user = request.user, name__icontains = query) | mobileproduct.objects.filter(seller__user = request.user, brand__icontains = query)
+    return render(request,"seller/view_products.html",{'mobileproduct_objects':mobileproduct_objects})
 
 def product_delete(request, id):
     product = mobileproduct.objects.get(pk = id)

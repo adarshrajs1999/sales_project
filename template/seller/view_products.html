@@ -1,10 +1,17 @@
 {% extends 'seller/seller_dash.html' %}
 
+{% block search %}
+<form method="GET" style="width:2000px;">
+    <input type="text" name="query" placeholder="Search product">
+    <button type="submit" class="btn btn-warning">Search</button>
+</form>
+{% endblock %}
+
 {% block content %}
 
 <div style="display:grid;grid-template-columns:1fr;grid-gap:20px;">
 
-{% for i in data %}
+{% for i in mobileproduct_objects %}
 
 <div class="card" style="display:grid;grid-template-columns:1fr 1fr;width:550px;height:250px;background-color:#E6E6FA;">
     <div style="position:relative;">
