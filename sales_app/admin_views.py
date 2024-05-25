@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from sales_app.filters import product_filter_form
 from sales_app.forms import CustomerRegister, SellerRegister
-from sales_app.models import Customer, Seller, mobileproduct, Feedback
+from sales_app.models import Customer, Seller, mobileproduct, Feedback, User_model
 
 
 def customer_details(request):
@@ -34,13 +34,17 @@ def seller_update(request, id):
     return render(request, "admin/seller_update.html", {'seller_form':seller_form})
 
 def customer_delete(request, id):
-    customer = Customer.objects.get(pk = id)
-    customer.delete()
+    customer_object = Customer.objects.get(pk = id)
+    user_model_object = customer_object.user
+    customer_object.delete()
+    user_model_object.delete()
     return redirect("customer_details")
 
 def seller_delete(request, id):
-    seller = Seller.objects.get(pk = id)
-    seller.delete()
+    seller_object = Seller.objects.get(pk = id)
+    user_model_object = seller_object.user
+    user_model_object.delete()
+    seller_object.delete()
     return redirect("seller_details")
 
 def admin_view_products(request):
