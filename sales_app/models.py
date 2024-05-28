@@ -12,6 +12,7 @@ class Customer(models.Model):
     phone_number = models.CharField(max_length = 100)
     email = models.EmailField()
     status1 = models.BooleanField(default = 0)
+    profile_picture = models.FileField()
 
     def __str__(self):
         return self.name
@@ -22,6 +23,7 @@ class Seller(models.Model):
     phone_number = models.CharField(max_length = 100)
     email = models.EmailField()
     status2 = models.BooleanField(default = 0)
+    profile_picture = models.FileField()
 
     def __str__(self):
         return self.name

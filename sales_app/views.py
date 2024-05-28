@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login
 from sales_app.forms import CustomerRegister, User_form, SellerRegister
+from sales_app.models import Customer, Seller
 
 
 # Create your views here.
@@ -17,7 +18,7 @@ def customer_register(request):
     customerform = CustomerRegister()
     if request.method == "POST":
         user_form = User_form(request.POST)
-        customerform = CustomerRegister(request.POST)
+        customerform = CustomerRegister(request.POST, request.FILES)
         if user_form.is_valid() and customerform.is_valid():
             user_obj = user_form.save(commit = False)
 # (commit = False)--> an object need to be created but should
@@ -36,7 +37,7 @@ def seller_register(request):
     sellerform = SellerRegister()
     if request.method == "POST":
         user_form = User_form(request.POST)
-        sellerform = SellerRegister(request.POST)
+        sellerform = SellerRegister(request.POST, request.FILES)
         if user_form.is_valid() and sellerform.is_valid():
             user_obj = user_form.save(commit = False)
             user_obj.is_seller = True
@@ -53,10 +54,12 @@ def admin_dash(request):
     return render(request,"admin/admin_dash.html")
 
 def customer_dash(request):
-    return render(request,"customer/customer_dash.html")
+    customer_object = Customer.objects.get(user = request.user)
+    return render(request,"customer/customer_dash.html", {'customer_object':customer_object})
 
 def seller_dash(request):
-    return render(request,"seller/seller_dash.html")
+    seller_object = Seller.objects.get(user = request.user)
+    return render(request,"seller/seller_dash.html", {'seller_object':seller_object})
 
 def login_view(request):
     if request.method == 'POST':
