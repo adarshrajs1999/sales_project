@@ -7,7 +7,7 @@ class User_model(AbstractUser):
     is_seller = models.BooleanField(default = False)
 
 class Customer(models.Model):
-    user = models.ForeignKey(User_model, on_delete = models.CASCADE, related_name = "customers")
+    user = models.ForeignKey(User_model, on_delete = models.CASCADE, related_name = "customer_user")
     name = models.CharField(max_length = 50)
     phone_number = models.CharField(max_length = 100)
     email = models.EmailField()
