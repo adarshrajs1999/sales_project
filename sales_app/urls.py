@@ -33,6 +33,7 @@ urlpatterns = [
     path("customer_feed_back/", customer_views.customer_feed_back, name="customer_feed_back"),
     path("customer_view_feedbacks/", customer_views.customer_view_feedbacks, name="customer_view_feed_backs"),
     path("admin_view_feedbacks/", admin_views.admin_view_feedbacks, name="admin_view_feed_backs"),
-    path("admin_view_orders", admin_views.admin_view_orders, name="admin_view_orders")
+    path("admin_view_orders", admin_views.admin_view_orders, name="admin_view_orders"),
+    path("admin_update_reply/<int:feedback_object_id>", admin_views.admin_update_reply, name="admin_update_reply")
 
 ]
