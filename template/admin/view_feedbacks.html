@@ -27,7 +27,7 @@
       <a href="{% url 'admin_update_reply' i.id %}"><button class="btn btn-info">Give reply</button></a>
       {% else %}
       {{i.reply}}
-        {% endif %}
+      {% endif %}
       </td>
     </tr>
   {% endfor %}

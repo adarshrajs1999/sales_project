@@ -8,10 +8,11 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">date</th>
-      <th scope="col">subject</th>
-      <th scope="col">feedback</th>
-      <th scope="col">reply</th>
+      <th scope="col">Date</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Feedback</th>
+      <th scope="col">Reply</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +32,7 @@
 
         {% endif %}
       </td>
+      <td><a href="{% url 'customer_delete_feedback' i.id %}"><button class="btn btn-danger">Delete</button></a></td>
     </tr>
   {% endfor %}
 

@@ -92,6 +92,10 @@ def customer_view_feedbacks(request):
     customer_object = Customer.objects.get(user=request.user)
     return render(request, "customer/view_feedbacks.html",{'feedback_objects':feedback_objects, 'customer_object': customer_object})
 
+def customer_delete_feedback(request, feedback_object_id):
+    feedback_object = Feedback.objects.get(id = feedback_object_id)
+    feedback_object.delete()
+    return redirect('customer_view_feed_backs')
 
 
 
