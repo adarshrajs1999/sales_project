@@ -18,7 +18,11 @@
       <td>{{i.phone_number}}</td>
       <td>{{i.email}}</td>
       <td><a href="{% url 'seller_update' i.id %}" ><button class="btn btn-info">Update</button></a></td>
-      <td><a href="{% url 'seller_delete' i.id %}"><button class="btn btn-danger">Delete</button></a></td>
+      <td>
+        <form method="post" action="{% url 'seller_delete' i.id %}" onsubmit="confirm_delete()" style="display:inline;">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
 
     </tr>
   {% endfor %}

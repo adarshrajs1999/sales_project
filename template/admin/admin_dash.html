@@ -506,6 +506,18 @@
 
     <!-- Template Javascript -->
     <script src=" {% static 'dash/js/main.js' %} "></script>
+<script>
+
+confirm_delete = function()
+{
+let confirm_data = confirm("Are you sure you want to delete!")
+if(!confirm_data)
+{
+event.preventDefault()
+}
+}
+
+</script>
  </body>
 
 </html>

@@ -29,7 +29,10 @@
 
           {% endif %}
 
-             <a class="btn btn-danger" href="{% url 'delete_cart' i.id %}" style="margin-top:5px;">Remove from Cart</a>
+          <form method="post" action="{% url 'delete_cart' i.id %}" onsubmit="confirm_remove_cart()" style="display:inline;margin-top:5px;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Remove from Cart</button>
+            </form>
           </p>
 
       </div>
