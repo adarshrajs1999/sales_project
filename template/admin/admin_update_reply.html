@@ -1,20 +1,21 @@
 {% extends 'admin/admin_dash.html' %}
-{% load crispy_forms_tags %}
 
 {% block content %}
 
 <form method="POST" style="width:100%;">
     {% csrf_token %}
     <div class="form-group">
-        <label class="form-control-lablel">Subject</label>
-    <input  required class="form-control" readonly value = "{{feedback_object.subject}}" >
-        </div>
-      <label class="form-control-lablel">Feedback</label>
-    <input  required class="form-control" readonly value = "{{feedback_object.feedback}}" >
-        </div>
-      <label class="form-control-lablel">Reply</label>
-    <input   required class="form-control" name="reply">
-        </div>
+        <label class="form-control-label">Subject</label>
+    <input required readonly value="{{feedback_object.subject}}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label class="form-control-label">Feedback</label>
+        <input required readonly value="{{feedback_object.feedback}}" class="form-control">
+    </div>
+     <div class="form-group">
+        <label class="form-control-label">Reply</label>
+        <input required name="reply" placeholder="Enter the reply" class="form-control">
+     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
 

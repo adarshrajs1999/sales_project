@@ -29,7 +29,7 @@ class Seller(models.Model):
         return self.name
 
 
-class mobileproduct(models.Model):
+class Product(models.Model):
     seller = models.ForeignKey(Seller,on_delete = models.CASCADE, related_name = 'mobileproduct')
     name = models.CharField(max_length=250)
     brand = models.CharField(max_length=250)
@@ -39,7 +39,7 @@ class mobileproduct(models.Model):
 
 class Cart(models.Model):
     customer = models.ForeignKey(Customer, on_delete = models.CASCADE, related_name = 'cart_customer')
-    product = models.ForeignKey(mobileproduct, on_delete = models.CASCADE, related_name = "cart_product")
+    product = models.ForeignKey(Product, on_delete = models.CASCADE, related_name = "cart_product")
     status = models.IntegerField(default = 0)
 
 class Buy(models.Model):

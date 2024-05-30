@@ -24,9 +24,9 @@
       <td>{{i.feedback}}</td>
       <td>
       {% if i.reply == None %}
-      <a href="{% url 'admin_update_reply' i.id %}"><button class="btn btn-info">Give reply</button></a>
+        <a href="{% url 'admin_update_reply' i.id %}"><button class="btn btn-info">Give reply</button></a>
       {% else %}
-      {{i.reply}}
+        {{i.reply}}
       {% endif %}
       </td>
     </tr>

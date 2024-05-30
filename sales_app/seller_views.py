@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from sales_app.models import mobileproduct, Seller, Pay, Cart, Customer
+from sales_app.models import Product, Seller, Pay, Cart, Customer
 from sales_app.forms import mobile_product_form
 
 def create_product(request):
@@ -18,21 +18,21 @@ def create_product(request):
     return render(request, "seller/add_product.html", {'data':data, 'seller_object':seller_object})
 
 def seller_view_products(request):
-    mobileproduct_objects = mobileproduct.objects.filter(seller__user = request.user)
+    mobileproduct_objects = Product.objects.filter(seller__user = request.user)
     if request.method == "GET":
         # Giving default value as empty('')
         query = request.GET.get('query', '')
-        mobileproduct_objects = mobileproduct.objects.filter(seller__user = request.user, name__icontains = query) | mobileproduct.objects.filter(seller__user = request.user, brand__icontains = query)
+        mobileproduct_objects = Product.objects.filter(seller__user = request.user, name__icontains = query) | Product.objects.filter(seller__user = request.user, brand__icontains = query)
     seller_object = Seller.objects.get(user=request.user)
     return render(request,"seller/view_products.html",{'mobileproduct_objects':mobileproduct_objects, 'seller_object':seller_object})
 
 def product_delete(request, id):
-    product = mobileproduct.objects.get(pk = id)
-    product.delete()
+    product_object = Product.objects.get(pk = id)
+    product_object.delete()
     return redirect('seller_view_products')
 
 def product_update(request, id):
-    obj =  mobileproduct.objects.get(pk = id)
+    obj =  Product.objects.get(pk = id)
     data = mobile_product_form(instance = obj)
     if request.method == "POST":
         data = mobile_product_form(request.POST, request.FILES, instance = obj)

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from sales_app.filters import product_filter_form, pay_filter_form
 from sales_app.forms import CustomerRegister, SellerRegister, customer_feedback_form
-from sales_app.models import Customer, Seller, mobileproduct, Feedback, User_model, Pay
+from sales_app.models import Customer, Seller, Product, Feedback, User_model, Pay
 
 
 def customer_details(request):
@@ -48,7 +48,7 @@ def seller_delete(request, id):
     return redirect("seller_details")
 
 def admin_view_products(request):
-    data = mobileproduct.objects.all()
+    data = Product.objects.all()
     searched_form = product_filter_form(request.GET,queryset = data)
     # qs-->query set
     data = searched_form.qs
