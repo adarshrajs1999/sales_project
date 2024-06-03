@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from sales_app.forms import pay_form, customer_feedback_form
 from sales_app.models import Product, Customer, Cart, Buy, Pay, Feedback
 from sales_app.filters import  product_filter_form
 
+@login_required(login_url = 'login_view')
 def customer_view_products(request):
     data = Product.objects.all()
     searched_form = product_filter_form(request.GET,queryset = data)
@@ -13,6 +15,7 @@ def customer_view_products(request):
     context = {'data':data,'searched_form':searched_form, 'customer_object': customer_object}
     return render(request, "customer/view_products.html", context)
 
+@login_required(login_url = 'login_view')
 def add_to_cart(request,product_id):
         customer_object = Customer.objects.get(user = request.user)
         product_object = Product.objects.get(pk = product_id)
@@ -24,18 +27,20 @@ def add_to_cart(request,product_id):
 # get()-->Used when you expect to retrieve exactly one object.
 # filter()-->Used when you expect to retrieve zero or more objects.
 
+@login_required(login_url = 'login_view')
 def view_cart(request):
     customer_object = Customer.objects.get(user = request.user)
     cart_objects = Cart.objects.filter(customer = customer_object)
     customer_object = Customer.objects.get(user=request.user)
     return render(request, "customer/view_cart.html",{'cart_objects':cart_objects,  'customer_object': customer_object})
 
-
+@login_required(login_url = 'login_view')
 def delete_cart(request, id):
     cart_object = Cart.objects.get(pk = id)
     cart_object.delete()
     return redirect("view_cart")
 
+@login_required(login_url = 'login_view')
 def buy(request, cart_id):
     if request.method == 'POST':
         cart_object = Cart.objects.get(id = cart_id)
@@ -53,7 +58,7 @@ def buy(request, cart_id):
     customer_object = Customer.objects.get(user = request.user)
     return render(request, "customer/buy.html",{'customer_object': customer_object})
 
-
+@login_required(login_url = 'login_view')
 def pay(request, buy_id):
     data = pay_form()
     buy_object = Buy.objects.get(id = buy_id)
@@ -70,11 +75,13 @@ def pay(request, buy_id):
     customer_object = Customer.objects.get(user=request.user)
     return render(request, 'customer/payment.html', {'data':data, 'buy_object':buy_object, 'customer_object': customer_object})
 
+@login_required(login_url = 'login_view')
 def view_my_orders(request):
     pay_objects = Pay.objects.filter(buy__cart__customer__user = request.user)
     customer_object = Customer.objects.get(user = request.user)
     return render(request, 'customer/view_my_orders.html', {'pay_objects': pay_objects,  'customer_object': customer_object})
 
+@login_required(login_url = 'login_view')
 def customer_feed_back(request):
     feedback_form_data = customer_feedback_form()
     if request.method == 'POST':
@@ -87,11 +94,13 @@ def customer_feed_back(request):
     customer_object = Customer.objects.get(user=request.user)
     return render(request, "customer/customer_feed_back.html",{'feedback_form_data':feedback_form_data, 'customer_object': customer_object})
 
+@login_required(login_url = 'login_view')
 def customer_view_feedbacks(request):
     feedback_objects = Feedback.objects.filter(customer__user = request.user)
     customer_object = Customer.objects.get(user=request.user)
     return render(request, "customer/view_feedbacks.html",{'feedback_objects':feedback_objects, 'customer_object': customer_object})
 
+@login_required(login_url = 'login_view')
 def customer_delete_feedback(request, feedback_object_id):
     feedback_object = Feedback.objects.get(id = feedback_object_id)
     feedback_object.delete()

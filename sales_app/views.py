@@ -1,17 +1,21 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate, login, logout
 from sales_app.forms import CustomerRegister, User_form, SellerRegister
 from sales_app.models import Customer, Seller
 
 
 # Create your views here.
 
+@login_required(login_url = 'login_view')
 def home(request):
     return render(request, "home.html")
 
+@login_required(login_url = 'login_view')
 def dash(request):
     return render(request, "dash.html")
+
 
 def customer_register(request):
     user_form = User_form()
@@ -32,6 +36,7 @@ def customer_register(request):
 
     return render(request,"customer_register.html", {'user_form':user_form, 'customer_form':customerform})
 
+
 def seller_register(request):
     user_form = User_form()
     sellerform = SellerRegister()
@@ -49,14 +54,16 @@ def seller_register(request):
 
     return render(request,"seller_register.html", {'user_form':user_form, 'sellerform':sellerform})
 
-
+@login_required(login_url = 'login_view')
 def admin_dash(request):
     return render(request,"admin/admin_dash.html")
 
+@login_required(login_url = 'login_view')
 def customer_dash(request):
     customer_object = Customer.objects.get(user = request.user)
     return render(request,"customer/customer_dash.html", {'customer_object':customer_object})
 
+@login_required(login_url = 'login_view')
 def seller_dash(request):
     seller_object = Seller.objects.get(user = request.user)
     return render(request,"seller/seller_dash.html", {'seller_object':seller_object})
@@ -78,7 +85,10 @@ def login_view(request):
             messages.info(request, 'Invalid Credentials')
     return render(request, "login.html")
 
-
+@login_required(login_url = 'login_view')
+def logout_view(request):
+    logout(request)
+    return redirect('login_view')
 
 
 
