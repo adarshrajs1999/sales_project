@@ -183,7 +183,12 @@
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
 <!--                            <a href="#" class="dropdown-item">My Profile</a>-->
 <!--                            <a href="#" class="dropdown-item">Settings</a>-->
-                            <a href="{% url 'logout_view' %}" class="dropdown-item">Log Out</a>
+                            <form action="{% url 'logout_view' %}" method="post" style="display:inline;" onsubmit="confirm_logout()" class="dropdown-item">
+                                {% csrf_token %}
+                                <button type="submit" style="background-color:transparent; border:none; padding:0; color:inherit; font:inherit; cursor:pointer; outline:none;">
+                                    Logout
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -511,6 +516,15 @@
 confirm_delete = function()
 {
 let confirm_data = confirm("Are you sure you want to delete!")
+if(!confirm_data)
+{
+event.preventDefault()
+}
+}
+
+confirm_logout = function()
+{
+let confirm_data = confirm("Are you sure you want to logout")
 if(!confirm_data)
 {
 event.preventDefault()
