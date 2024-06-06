@@ -5,17 +5,14 @@ from django.contrib.auth import authenticate, login, logout
 from sales_app.forms import CustomerRegister, User_form, SellerRegister
 from sales_app.models import Customer, Seller
 
-
 # Create your views here.
 
-@login_required(login_url = 'login_view')
 def home(request):
     return render(request, "home.html")
 
 @login_required(login_url = 'login_view')
 def dash(request):
     return render(request, "dash.html")
-
 
 def customer_register(request):
     user_form = User_form()
