@@ -51,6 +51,8 @@ def seller_register(request):
 
     return render(request,"seller_register.html", {'user_form':user_form, 'sellerform':sellerform})
 
+
+
 @login_required(login_url = 'login_view')
 def admin_dash(request):
     return render(request,"admin/admin_dash.html")
