@@ -33,7 +33,7 @@ class Product(models.Model):
     seller = models.ForeignKey(Seller,on_delete = models.CASCADE, related_name = 'mobileproduct')
     name = models.CharField(max_length=250)
     brand = models.CharField(max_length=250)
-    price = models.IntegerField()
+    price = models.PositiveIntegerField()
     description = models.TextField()
     image=models.FileField(upload_to = 'documents/')
 
