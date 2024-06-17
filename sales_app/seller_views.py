@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from sales_app.models import Product, Seller, Pay, Cart, Customer
-from sales_app.forms import mobile_product_form
+from sales_app.forms import mobile_product_form, SellerRegister
+
 
 @login_required(login_url = 'login_view')
 def create_product(request):
@@ -52,6 +53,16 @@ def view_paid_cart(request):
     seller_object = Seller.objects.get(user=request.user)
     return render(request,"seller/view_paid_orders.html",{'pay_objects':pay_objects, 'seller_object':seller_object})
 
+def seller_profile_update(request):
+    seller_object = Seller.objects.get(user = request.user)
+    seller_form_object = SellerRegister(instance = seller_object)
+    if request.method == 'POST':
+        seller_form_object = SellerRegister(request.POST,request.FILES, instance = seller_object)
+        if seller_form_object.is_valid():
+            seller_form_object.save()
+            return redirect('seller_profile_update')
+    seller_object = Seller.objects.get(user=request.user)
+    return render(request,"seller/seller_profile_update.html",{'seller_form_object':seller_form_object,'seller_object':seller_object})
 
 
 

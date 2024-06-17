@@ -63,9 +63,9 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    {% block button1 %}
-                    <a href=" {% url 'customer_view_products' %} " class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>View Products</a>
-                    {% endblock %}
+                    <a href="{% url 'customer_profile_update' %}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>View&Edit my profile</a>
+
+                    <a href=" {% url 'customer_view_products' %} " class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>View Products</a>
 <!--                    <div class="nav-item dropdown">-->
 <!--                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>-->
 <!--                        <div class="dropdown-menu bg-transparent border-0">-->
@@ -80,6 +80,9 @@
                     <a href=" {% url 'view_my_orders' %} " class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>View My orders</a>
                     <a href=" {% url 'customer_feed_back' %} " class="nav-item nav-link"><i class="fa fa-table me-2"></i>Feed back</a>
                     <a href=" {% url 'customer_view_feed_backs' %} " class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>View feedbacks</a>
+                    <a href=" {% url 'logout_view' %} " class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Logout</a>
+
+
                     <div class="nav-item dropdown">
 <!--                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>-->
                         <div class="dropdown-menu bg-transparent border-0">

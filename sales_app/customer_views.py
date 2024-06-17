@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from sales_app.forms import pay_form, customer_feedback_form
+from sales_app.forms import pay_form, customer_feedback_form, CustomerRegister
 from sales_app.models import Product, Customer, Cart, Buy, Pay, Feedback
 from sales_app.filters import  product_filter_form
 
@@ -105,6 +105,18 @@ def customer_delete_feedback(request, feedback_object_id):
     feedback_object = Feedback.objects.get(id = feedback_object_id)
     feedback_object.delete()
     return redirect('customer_view_feed_backs')
+
+
+def customer_profile_update(request):
+    customer_object = Customer.objects.get(user = request.user)
+    customer_form_object = CustomerRegister(instance = customer_object)
+    if request.method == 'POST':
+        customer_form_object = CustomerRegister(request.POST,request.FILES, instance = customer_object)
+        if customer_form_object.is_valid():
+            customer_form_object.save()
+            return redirect('customer_profile_update')
+    customer_object = Customer.objects.get(user=request.user)
+    return render(request,"customer/customer_profile_update.html",{'customer_form_object':customer_form_object,'customer_object':customer_object})
 
 
 

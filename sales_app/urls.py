@@ -39,5 +39,8 @@ urlpatterns = [
     path("logout/", views.logout_view, name="logout_view"),
     path('admin_view_seller_approval_requests/', admin_views.admin_view_seller_approval_requests, name="admin_view_seller_approval_requests"),
     path('admin_approve_seller/<int:id>/', admin_views.admin_approve_seller,name = 'admin_approve_seller'),
-    path('admin_cancel_seller_approval/<int:id>/',admin_views.admin_cancel_seller_approval,name='admin_cancel_seller_approval')
+    path('admin_cancel_seller_approval/<int:id>/',admin_views.admin_cancel_seller_approval,name='admin_cancel_seller_approval'),
+    path('customer_profile_update/',customer_views.customer_profile_update,name="customer_profile_update"),
+    path('seller_profile_update/',seller_views.seller_profile_update,name='seller_profile_update'),
+
 ]
