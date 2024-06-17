@@ -12,7 +12,7 @@ urlpatterns = [
     path("customer_dash/", views.customer_dash, name = "customer_dash"),
     path("seller_dash/", views.seller_dash, name = "seller_dash"),
     path("customer_details/", admin_views.customer_details, name = "customer_details"),
-    path("seller_details/", admin_views.seller_details, name = "seller_details"),
+    path("admin_view_approved_seller_details/", admin_views.admin_view_approved_seller_details, name = "admin_view_approved_seller_details"),
     path("customer_update/<int:id>/", admin_views.customer_update, name = "customer_update"),
     path("seller_update/<int:id>/", admin_views.seller_update, name = "seller_update"),
     path("customer_delete/<int:id>/", admin_views.customer_delete, name = "customer_delete"),
@@ -36,6 +36,8 @@ urlpatterns = [
     path("admin_view_orders", admin_views.admin_view_orders, name="admin_view_orders"),
     path("admin_update_reply/<int:feedback_object_id>", admin_views.admin_update_reply, name="admin_update_reply"),
     path("customer_delete_feedback/<int:feedback_object_id>/", customer_views.customer_delete_feedback, name="customer_delete_feedback"),
-    path("logout/", views.logout_view, name="logout_view")
-
+    path("logout/", views.logout_view, name="logout_view"),
+    path('admin_view_seller_approval_requests/', admin_views.admin_view_seller_approval_requests, name="admin_view_seller_approval_requests"),
+    path('admin_approve_seller/<int:id>/', admin_views.admin_approve_seller,name = 'admin_approve_seller'),
+    path('admin_cancel_seller_approval/<int:id>/',admin_views.admin_cancel_seller_approval,name='admin_cancel_seller_approval')
 ]

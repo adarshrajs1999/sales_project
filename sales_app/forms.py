@@ -24,7 +24,7 @@ class SellerRegister(forms.ModelForm):
     class Meta:
         model = Seller
         fields = ('__all__')
-        exclude = ("user", "status2")
+        exclude = ("user", "status2","admin_approval_status")
 
 
 class mobile_product_form(forms.ModelForm):

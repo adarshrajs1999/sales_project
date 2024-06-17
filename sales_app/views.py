@@ -73,18 +73,25 @@ def login_view(request):
         password = request.POST.get('password')
         user_object = authenticate(request, username = username, password = password)
         if user_object is not None:
-            login(request , user_object)
-            if user_object.is_staff:
-                return redirect("admin_dash")
-            elif user_object.is_customer:
-                return redirect("customer_dash")
-            elif user_object.is_seller:
-                return redirect("seller_dash")
+            if user_object.is_seller:
+                current_seller_object = Seller.objects.get(user = user_object)
+                if current_seller_object.admin_approval_status == 1:
+                    login(request,user_object)
+                    return redirect('seller_dash')
+                else:
+                    messages.info(request,"This employer user is not approved by admin yet!")
+
+            elif user_object.is_staff or user_object.is_customer:
+                login(request,user_object)
+                if user_object.is_staff:
+                    return redirect('admin_dash')
+                elif user_object.is_customer:
+                    return redirect('customer_dash')
         else:
             messages.info(request, 'Invalid Credentials')
     return render(request, "login.html")
 
-@login_required(login_url = 'login_view')
+
 def logout_view(request):
     logout(request)
     return redirect('login_view')

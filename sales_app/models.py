@@ -24,6 +24,8 @@ class Seller(models.Model):
     email = models.EmailField()
     status2 = models.BooleanField(default = 0)
     profile_picture = models.FileField()
+    admin_approval_status = models.BooleanField(default = 0)
+
 
     def __str__(self):
         return self.name

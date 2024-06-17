@@ -11,9 +11,9 @@ def customer_details(request):
     return render(request, "admin/customer_details.html", {'customers':customers})
 
 @login_required(login_url = 'login_view')
-def seller_details(request):
-    sellers=Seller.objects.all()
-    return render(request, "admin/seller_details.html", {'sellers':sellers})
+def admin_view_approved_seller_details(request):
+    sellers = Seller.objects.filter(admin_approval_status = 1)
+    return render(request, "admin/admin_view_approved_seller_details.html", {'sellers':sellers})
 
 @login_required(login_url = 'login_view')
 def customer_update(request, id):
@@ -50,7 +50,6 @@ def seller_delete(request, id):
     seller_object = Seller.objects.get(pk = id)
     user_model_object = seller_object.user
     user_model_object.delete()
-    seller_object.delete()
     return redirect("seller_details")
 
 @login_required(login_url = 'login_view')
@@ -84,3 +83,22 @@ def admin_update_reply(request, feedback_object_id):
         feedback_object.save()
         return redirect('admin_view_feed_backs')
     return render(request, "admin/admin_update_reply.html", {'feedback_object':feedback_object})
+
+@login_required(login_url = 'login_view')
+def admin_view_seller_approval_requests(request):
+    seller_objects = Seller.objects.filter(admin_approval_status = 0)
+    return render(request,"admin/admin_view_seller_approval_requests.html",{'seller_objects':seller_objects})
+
+@login_required(login_url = 'login_view')
+def admin_approve_seller(request, id):
+    seller_object = Seller.objects.get(id = id)
+    seller_object.admin_approval_status = 1
+    seller_object.save()
+    return redirect('admin_view_seller_approval_requests')
+
+@login_required(login_url = 'login_view')
+def admin_cancel_seller_approval(request,id):
+    seller_object = Seller.objects.get(id = id)
+    seller_object.admin_approval_status = 0
+    seller_object.save()
+    return redirect('admin_view_approved_seller_details')

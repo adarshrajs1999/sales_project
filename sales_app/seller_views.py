@@ -59,4 +59,3 @@ def view_paid_cart(request):
 
 
 
-
