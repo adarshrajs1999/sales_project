@@ -8,7 +8,7 @@ from sales_app.models import Customer, Seller, Product, Feedback, User_model, Pa
 @login_required(login_url = 'login_view')
 def customer_details(request):
     customers=Customer.objects.all()
-    return render(request, "admin/customer_details.html", {'customers':customers})
+    return render(request, "admin/admin_view_customer_details.html", {'customers':customers})
 
 @login_required(login_url = 'login_view')
 def admin_view_approved_seller_details(request):

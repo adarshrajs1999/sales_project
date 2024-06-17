@@ -18,7 +18,7 @@
       <td>{{i.phone_number}}</td>
       <td>{{i.email}}</td>
       <td><a href="{% url 'seller_update' i.id %}" ><button class="btn btn-info">Update</button></a></td>
-       <td><a href="{% url 'admin_cancel_seller_approval' i.id %}" class="btn btn-danger" onclick="confirm_cancel(event)" >Cancel approval</a></td>
+       <td><a href="{% url 'admin_cancel_seller_approval' i.id %}" class="btn btn-danger" onclick="confirm_remove()" >Remove approval</a></td>
 
     </tr>
   {% endfor %}
