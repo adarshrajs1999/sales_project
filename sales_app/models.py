@@ -42,7 +42,8 @@ class Product(models.Model):
 class Cart(models.Model):
     customer = models.ForeignKey(Customer, on_delete = models.CASCADE, related_name = 'cart_customer')
     product = models.ForeignKey(Product, on_delete = models.CASCADE, related_name = "cart_product")
-    status = models.IntegerField(default = 0)
+    buy_status = models.BooleanField(default = 0)
+
 
 class Buy(models.Model):
     cart = models.ForeignKey(Cart, on_delete = models.CASCADE, related_name = 'buy_cart')
@@ -50,6 +51,7 @@ class Buy(models.Model):
     adress = models.TextField()
     phone = models.CharField(max_length = 100)
     amount = models.IntegerField()
+    pay_status = models.IntegerField(default=0)
 
 class Pay(models.Model):
     buy = models.ForeignKey(Buy, on_delete = models.CASCADE, related_name='pay_buy')

@@ -19,11 +19,11 @@
             price:{{i.product.price}}<br>
              seller:{{i.product.seller.name}}<br>
 
-             {% if i.status == 0 %}
+             {% if i.buy_status == 0 %}
 
           <a href="{% url 'buy' i.id %}"><button class="btn btn-success" >Buy Now</button></a>
 
-            {% elif i.status == 1 %}
+            {% elif i.buy_status == 1 %}
 
             <button style="color:red;border:0px;background-color:transparent;">payment completed!</button>
 

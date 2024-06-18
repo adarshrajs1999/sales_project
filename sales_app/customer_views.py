@@ -42,38 +42,46 @@ def delete_cart(request, id):
 
 @login_required(login_url = 'login_view')
 def buy(request, cart_id):
+    cart_object = Cart.objects.get(id=cart_id)
     if request.method == 'POST':
-        cart_object = Cart.objects.get(id = cart_id)
-        cart = cart_object
         quantity = int(request.POST.get('quantity', 0))
         adress = request.POST.get('adress')
         phone = request.POST.get('phone')
         price = int(cart_object.product.price)
         amount = quantity*price
-        buy_object = Buy(cart = cart,quantity = quantity,adress = adress,
-        phone = phone,amount = amount)
-        buy_object.save()
-        current_obect_id = buy_object.id
-        return redirect("pay", buy_id = current_obect_id)
+        if cart_object.buy_status == 0:
+            buy_object = Buy(cart = cart_object,quantity = quantity,adress = adress,
+            phone = phone,amount = amount)
+            buy_object.save()
+            cart_object.buy_status = 1
+            cart_object.save()
+        elif cart_object.buy_status == 1:
+            buy_object = Buy.objects.get(cart = cart_object)
+            buy_object.quantity = quantity
+            buy_object.adress =adress
+            buy_object.phone = phone
+            buy_object.amount = amount
+            buy_object.save()
+        return redirect("pay", buy_object_id = buy_object.id)
     customer_object = Customer.objects.get(user = request.user)
     return render(request, "customer/buy.html",{'customer_object': customer_object})
 
+
 @login_required(login_url = 'login_view')
-def pay(request, buy_id):
-    data = pay_form()
-    buy_object = Buy.objects.get(id = buy_id)
+def pay(request, buy_object_id):
+    buy_object = Buy.objects.get(id=buy_object_id)
+    pay_form_object = pay_form()
     if request.method == 'POST':
-        data = pay_form(request.POST)
-        if data.is_valid():
-            pay_object = data.save(commit = False)
+        pay_form_object = pay_form(request.POST)
+        if pay_form_object.is_valid():
+            pay_object = pay_form_object.save(commit = False)
             pay_object.buy = buy_object
             pay_object.save()
-            cart_object =buy_object.cart
-            cart_object.status = 1
-            cart_object.save()
+            buy_object.pay_status = 1
+            buy_object.save()
             return redirect('view_cart')
     customer_object = Customer.objects.get(user=request.user)
-    return render(request, 'customer/payment.html', {'data':data, 'buy_object':buy_object, 'customer_object': customer_object})
+    return render(request, 'customer/payment.html', {'data':pay_form_object, 'buy_object':buy_object, 'customer_object': customer_object})
 
 @login_required(login_url = 'login_view')
 def view_my_orders(request):
