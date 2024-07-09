@@ -49,7 +49,7 @@ def product_update(request, id):
 
 @login_required(login_url = 'login_view')
 def view_paid_cart(request):
-    pay_objects = Pay.objects.filter(buy__cart__status = 1, buy__cart__product__seller__user = request.user )
+    pay_objects = Pay.objects.filter(buy__cart__product__seller__user = request.user )
     seller_object = Seller.objects.get(user=request.user)
     return render(request,"seller/view_paid_orders.html",{'pay_objects':pay_objects, 'seller_object':seller_object})
 
