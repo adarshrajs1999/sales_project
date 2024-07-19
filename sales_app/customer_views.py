@@ -104,7 +104,7 @@ def customer_feed_back(request):
 
 @login_required(login_url = 'login_view')
 def customer_view_feedbacks(request):
-    feedback_objects = Feedback.objects.filter(customer__user = request.user)
+    feedback_objects = Feedback.objects.filter(customer__user = request.user).order_by('-date')
     customer_object = Customer.objects.get(user=request.user)
     return render(request, "customer/view_feedbacks.html",{'feedback_objects':feedback_objects, 'customer_object': customer_object})
 

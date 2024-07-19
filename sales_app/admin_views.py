@@ -63,7 +63,7 @@ def admin_view_products(request):
 
 @login_required(login_url = 'login_view')
 def admin_view_feedbacks(request):
-    feedback_objects = Feedback.objects.all()
+    feedback_objects = Feedback.objects.all().order_by('-date')
     return render(request, "admin/view_feedbacks.html",{'feedback_objects':feedback_objects})
 
 @login_required(login_url = 'login_view')
