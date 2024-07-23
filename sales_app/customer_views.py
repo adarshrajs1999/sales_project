@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
 from sales_app.forms import pay_form, customer_feedback_form, CustomerRegister
@@ -7,12 +8,17 @@ from sales_app.filters import  product_filter_form
 
 @login_required(login_url = 'login_view')
 def customer_view_products(request):
-    data = Product.objects.all()
-    searched_form = product_filter_form(request.GET,queryset = data)
+    product_objects = Product.objects.all()
+    searched_form = product_filter_form(request.GET,queryset = product_objects)
     # qs-->query set
-    data = searched_form.qs
+    product_objects = searched_form.qs
+
+    paginator = Paginator(product_objects, 1)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     customer_object = Customer.objects.get(user=request.user)
-    context = {'data':data,'searched_form':searched_form, 'customer_object': customer_object}
+    context = {'page_obj': page_obj,'searched_form':searched_form, 'customer_object': customer_object}
     return render(request, "customer/view_products.html", context)
 
 @login_required(login_url = 'login_view')
