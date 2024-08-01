@@ -4,7 +4,8 @@ from sales_app import views, admin_views, seller_views, customer_views
 
 urlpatterns = [
     path("", views.home, name = "home"),
-    path("dash/", views.dash, name = "dash"),
+    path("register_dash/", views.register_dash, name = "dash"),
+    path('user_dash/',views.user_dash,name='user_dash'),
     path("login/", views.login_view, name = "login_view"),
     path("customer_register/", views.customer_register, name= "customer_register"),
     path("seller_register/", views.seller_register, name = "seller_register"),
