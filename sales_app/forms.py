@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from sales_app.models import User_model, Customer, Seller, Product, Cart, Pay, Feedback
+from sales_app.models import User_model, Customer, Seller, Product, Pay, Feedback
 
 
 class User_form(UserCreationForm):
@@ -17,7 +17,6 @@ class CustomerRegister(forms.ModelForm):
         model = Customer
         fields = ("__all__")
         exclude = ("user", "status1")
-
 
 
 class SellerRegister(forms.ModelForm):
@@ -37,7 +36,7 @@ class dateinput(forms.DateInput):
     input_type = 'date'
 
 class pay_form(forms.ModelForm):
-# for overwriting the form field linked to the model field'date'
+# for overwriting the form field linked to the model field 'date'
 # in the Payment model.
     expiry_date = forms.DateField(widget = dateinput(attrs = {'style':'background-color:white;'}))
     card_number = forms.CharField(widget = forms.TextInput(attrs = {'style': 'background-color:white;'}))

@@ -1,7 +1,6 @@
 import django_filters
 from django import forms
 from django_filters import FilterSet, CharFilter
-
 from .models import Product, Seller, Buy, Pay
 
 

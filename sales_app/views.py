@@ -32,7 +32,6 @@ def customer_register(request):
             customer_obj.user = user_obj
             customer_obj.save()
             return redirect("/")
-
     return render(request,"customer_register.html", {'user_form':user_form, 'customer_form':customerform})
 
 
@@ -50,9 +49,7 @@ def seller_register(request):
             seller_obj.user = user_obj
             seller_obj.save()
             return redirect("/")
-
     return render(request,"seller_register.html", {'user_form':user_form, 'sellerform':sellerform})
-
 
 
 @login_required(login_url = 'login_view')

@@ -26,7 +26,6 @@ class Seller(models.Model):
     profile_picture = models.FileField()
     admin_approval_status = models.BooleanField(default = 0)
 
-
     def __str__(self):
         return self.name
 
